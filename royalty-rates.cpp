@@ -6,10 +6,10 @@ namespace royaltyRates {
   int estimatedCopiesSold;
   const long double manuscript_payment = 5000;
   const long double publishing_payment = 20000;
-  const long double option_two_rate = 12.5;
+  const long double option_two_rate = 0.125;
   const int option_three_minimum = 4000;
-  const int option_three_rate_one = 10;
-  const int option_three_rate_two = 14;
+  const int option_three_rate_one = 0.10;
+  const int option_three_rate_two = 0.14;
   long double optionOneTotal;
   long double optionTwoTotal;
   long double optionThreeTotal;
@@ -23,33 +23,33 @@ int main() {
   cout << fixed << setprecision(2);
   cout << "Please enter the net price of your book: ";
   cin >> netPrice;
-  cout << endl;
   cout << "Please enter the estimated number of copies to be sold: ";
   cin >> estimatedCopiesSold;
+  cout << endl;
 
   // Option 1
   // $5,000 dollars for final manuscript
   // $20,000 upon publishing
   optionOneTotal = manuscript_payment + publishing_payment;
-  cout << "OPTION 1: $" << optionOneTotal << endl;
+  cout << "Royalty option1 " << optionOneTotal << endl;
 
   // Option 2
   // 12.5% of the net price of each copy sold
-  optionTwoTotal = estimatedCopiesSold * netPrice / option_two_rate;
-  cout << "OPTION 2: $" << optionTwoTotal << endl;
+  optionTwoTotal = estimatedCopiesSold * netPrice * option_two_rate;
+  cout << "Royalty option2 " << optionTwoTotal << endl;
 
   // Option 3
   // 10% of the net price for the first 4000 copies sold
   // 14% of the net price for every copy sold after 4000
   if (estimatedCopiesSold <= option_three_minimum) {
-    optionThreeTotal = estimatedCopiesSold * netPrice / option_three_rate_one;
-    cout << "OPTION 3: $" << optionThreeTotal << endl;
+    optionThreeTotal = estimatedCopiesSold * netPrice * option_three_rate_one;
+    cout << "Royalty option3 " << optionThreeTotal << endl;
   } else {
-    long double minimumTotal = option_three_minimum * netPrice / option_three_rate_one;
+    long double minimumTotal = option_three_minimum * netPrice * option_three_rate_one;
     int remainder = estimatedCopiesSold - option_three_minimum;
-    long double remainderTotal = remainder * netPrice / option_three_rate_two;
+    long double remainderTotal = remainder * netPrice * option_three_rate_two;
     optionThreeTotal = minimumTotal + remainderTotal;
-    cout << "OPTION 3: $" << optionThreeTotal << endl;
+    cout << "Royalty option3 " << optionThreeTotal << endl;
   }
 
   if (optionOneTotal > optionTwoTotal && optionOneTotal > optionThreeTotal) {
@@ -63,7 +63,6 @@ int main() {
   }
   
   cout << endl;
-
 
   return 0;
 }
